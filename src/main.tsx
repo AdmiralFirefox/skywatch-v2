@@ -5,7 +5,7 @@ import Search from "./routes/search.tsx";
 import SearchHistory from "./routes/search_history.tsx";
 import Bookmarking from "./routes/bookmarking.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
+import "./index.scss";
 
 const router = createBrowserRouter([
   {
