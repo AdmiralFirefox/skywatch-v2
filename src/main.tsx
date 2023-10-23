@@ -5,7 +5,10 @@ import Search from "./routes/search.tsx";
 import SearchHistory from "./routes/search_history.tsx";
 import Bookmarking from "./routes/bookmarking.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 import "./styles/globals.scss";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
