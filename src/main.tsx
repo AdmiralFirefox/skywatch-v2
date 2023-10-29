@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 import Home from "./Home.tsx";
 import Search from "./routes/search.tsx";
 import SearchHistory from "./routes/search_history.tsx";
 import Bookmarking from "./routes/bookmarking.tsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { AuthProvider } from "./provider/AuthProvider.tsx";
 import "./styles/globals.scss";
 
 const queryClient = new QueryClient();
@@ -17,15 +18,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/search",
-    element: <Search />,
+    element: (
+      <AuthProvider>
+        <Search />
+      </AuthProvider>
+    ),
   },
   {
     path: "/search_history",
-    element: <SearchHistory />,
+    element: (
+      <AuthProvider>
+        <SearchHistory />
+      </AuthProvider>
+    ),
   },
   {
     path: "/bookmarking",
-    element: <Bookmarking />,
+    element: (
+      <AuthProvider>
+        <Bookmarking />
+      </AuthProvider>
+    ),
   },
 ]);
 
