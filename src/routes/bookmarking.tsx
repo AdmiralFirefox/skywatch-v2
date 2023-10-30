@@ -1,8 +1,12 @@
+import Navbar from "../components/Navbar/Navbar";
+
 const Bookmarking = () => {
   return (
-    <main>
-      <h1>Bookmarking Page</h1>
-    </main>
+    <>
+      <Navbar />
+
+      <main></main>
+    </>
   );
 };
 

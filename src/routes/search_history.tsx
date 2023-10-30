@@ -1,8 +1,12 @@
+import Navbar from "../components/Navbar/Navbar";
+
 const SearchHistory = () => {
   return (
-    <main>
-      <h1>Search History Page</h1>
-    </main>
+    <>
+      <Navbar />
+
+      <main></main>
+    </>
   );
 };
 
