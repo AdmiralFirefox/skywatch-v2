@@ -8,6 +8,7 @@ import SearchHistory from "./routes/search_history.tsx";
 import Bookmarking from "./routes/bookmarking.tsx";
 import { AuthProvider } from "./provider/AuthProvider.tsx";
 import "./styles/globals.scss";
+import "./styles/fonts.scss";
 
 const queryClient = new QueryClient();
 

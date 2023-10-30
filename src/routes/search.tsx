@@ -5,9 +5,7 @@ const Search = () => {
     <>
       <Navbar />
 
-      <main>
-        <h1>Search Page</h1>
-      </main>
+      <main></main>
     </>
   );
 };

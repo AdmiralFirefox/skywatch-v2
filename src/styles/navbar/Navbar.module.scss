@@ -1,1 +1,37 @@
 @use "../themeprovider/themeprovider" as theme;
+
+.navbar {
+  width: min(85%, 45em);
+  margin: 2em auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 0.7em;
+
+  .nav-icon {
+    text-decoration: none;
+    background: theme.$dark-blue-color;
+    color: theme.$white-color;
+    font-size: 1.6rem;
+    padding: 0.25em 0.3em;
+    border-radius: 5px;
+
+    &:hover {
+      background: theme.$transparent-dark-sky-blue-color;
+    }
+  }
+
+  .user-icon {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    top: 0.26em;
+
+    img {
+      width: 5em;
+      border-radius: 50%;
+    }
+  }
+}
