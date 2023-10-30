@@ -1,12 +1,13 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { AuthContext } from "../../context/AuthContext";
 import { auth } from "../../firebase/firebase";
+import NavbarLink from "./NavbarLink";
 import SignInModal from "../Modal/SignInModal";
 import SignOutModal from "../Modal/SignOutModal";
 import User from "../../assets/icons/user.png";
 import { AiFillHome } from "react-icons/ai";
+import { FaSearchLocation } from "react-icons/fa";
 import { FaHistory } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
 import styles from "../../styles/navbar/Navbar.module.scss";
@@ -60,15 +61,18 @@ const Navbar = () => {
   return (
     <>
       <header className={styles["navbar"]}>
-        <Link to="/" className={styles["nav-icon"]}>
+        <NavbarLink route="/">
           <AiFillHome />
-        </Link>
-        <Link to="/search_history" className={styles["nav-icon"]}>
+        </NavbarLink>
+        <NavbarLink route="/search">
+          <FaSearchLocation />
+        </NavbarLink>
+        <NavbarLink route="/search_history">
           <FaHistory />
-        </Link>
-        <Link to="/bookmarking" className={styles["nav-icon"]}>
+        </NavbarLink>
+        <NavbarLink route="/bookmarking">
           <AiFillHeart />
-        </Link>
+        </NavbarLink>
         {user ? (
           <button className={styles["user-icon"]} onClick={openSignOutModal}>
             <img src={user.photoURL} alt="User" referrerPolicy="no-referrer" />

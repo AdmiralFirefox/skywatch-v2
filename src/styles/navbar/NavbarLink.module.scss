@@ -1,0 +1,25 @@
+@use "../themeprovider/themeprovider" as theme;
+
+.nav-icon {
+  text-decoration: none;
+  background: theme.$dark-blue-color;
+  color: theme.$white-color;
+  font-size: 1.6rem;
+  padding: 0.25em 0.3em;
+  border-radius: 5px;
+  transition: background 0.15s ease-in-out;
+
+  &:hover {
+    background: theme.$transparent-dark-sky-blue-color;
+  }
+}
+
+.nav-icon-active {
+  text-decoration: none;
+  background: theme.$orange-color;
+  color: theme.$white-color;
+  font-size: 1.6rem;
+  padding: 0.25em 0.3em;
+  border-radius: 5px;
+  transition: background 0.15s ease-in-out;
+}
