@@ -22,10 +22,27 @@
   padding: 2em;
   border-radius: 5px;
 
+  .close-button {
+    font-size: 1.8rem;
+    background: transparent;
+    border: none;
+    color: theme.$orange-color;
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+    cursor: pointer;
+    transition: color 0.15s ease-in-out;
+
+    &:hover {
+      color: theme.$light-orange-color;
+    }
+  }
+
   h1 {
     color: theme.$white-color;
     font-family: "PoppinsMedium";
     font-size: clamp(1.5rem, 2.5vw, 2rem);
+    margin-top: 0.3em;
   }
 
   p {
@@ -35,7 +52,7 @@
     font-size: clamp(1rem, 1.5vw, 1.1rem);
   }
 
-  button {
+  .google-button {
     background: theme.$white-color;
     color: theme.$black-color;
     font-size: 1.15rem;
@@ -47,6 +64,7 @@
     border-radius: 5px;
     margin-top: 2em;
     cursor: pointer;
+    transition: background 0.15s ease-in-out;
 
     img {
       width: 1.8em;

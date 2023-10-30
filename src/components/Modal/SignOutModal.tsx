@@ -1,5 +1,6 @@
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { FaSignOutAlt } from "react-icons/fa";
+import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import styles from "../../styles/modal/SignOutModal.module.scss";
 
@@ -37,6 +38,12 @@ const SignOutModal = ({
           className={styles["modal"]}
           style={{ maxHeight: `calc(${windowHeight}px - 10vh)` }}
         >
+          <button className={styles["close-button"]} onClick={closeSignOutModal}>
+            <IconContext.Provider value={{ className: styles["icon"] }}>
+              <AiFillCloseCircle />
+            </IconContext.Provider>
+          </button>
+
           <div className={styles["user-info"]}>
             <img src={userPhoto} alt="User Photo" />
             <div className={styles["content"]}>
@@ -45,11 +52,11 @@ const SignOutModal = ({
             </div>
           </div>
 
-          <div className={styles["button-wrapper"]}>
+          <div className={styles["sign-out-button"]}>
             <button onClick={signOutAccount}>
               Sign Out{" "}
               <IconContext.Provider
-                value={{ className: styles["sign-out-icon"] }}
+                value={{ className: styles["icon"] }}
               >
                 <FaSignOutAlt />
               </IconContext.Provider>
