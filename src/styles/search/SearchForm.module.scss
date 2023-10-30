@@ -1,0 +1,58 @@
+@use "../themeprovider/themeprovider" as theme;
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 100%;
+    font-family: "PoppinsRegular";
+    font-size: 1.05rem;
+    padding: 0.75em 1em;
+    border: none;
+    border-radius: 5px;
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    &::placeholder {
+      font-family: "PoppinsRegular";
+      color: theme.$gray-color;
+    }
+  }
+
+  button {
+    font-family: "PoppinsBold";
+    background: theme.$orange-color;
+    color: theme.$white-color;
+    border: none;
+    border-radius: 5px;
+    padding: 0.6em 1.6em;
+    font-size: 1.1rem;
+    margin-top: 0.6em;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+
+    &:hover {
+      background: theme.$light-orange-color;
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+}
+
+@media (min-width: theme.$media-query-very-small-value) {
+  .search-form {
+    flex-direction: row;
+
+    button {
+      margin-left: 0.8em;
+      margin-top: 0;
+    }
+  }
+}

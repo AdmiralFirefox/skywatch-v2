@@ -62,7 +62,11 @@ const SignOutModal = ({
             </button>
 
             <div className={styles["user-info"]}>
-              <img src={userPhoto} alt="User Photo" />
+              <img
+                src={userPhoto}
+                alt="User Photo"
+                referrerPolicy="no-referrer"
+              />
               <div className={styles["content"]}>
                 <p>{userName}</p>
                 <p>{userEmail}</p>

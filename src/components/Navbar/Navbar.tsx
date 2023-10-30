@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { auth } from "../../firebase/firebase";
 import SignInModal from "../Modal/SignInModal";
 import SignOutModal from "../Modal/SignOutModal";
-import User from "../../assets/user.png";
+import User from "../../assets/icons/user.png";
 import { AiFillHome } from "react-icons/ai";
 import { FaHistory } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
@@ -70,11 +70,8 @@ const Navbar = () => {
           <AiFillHeart />
         </Link>
         {user ? (
-          <button
-            className={styles["user-icon"]}
-            onClick={openSignOutModal}
-          >
-            <img src={user.photoURL} alt="User" />
+          <button className={styles["user-icon"]} onClick={openSignOutModal}>
+            <img src={user.photoURL} alt="User" referrerPolicy="no-referrer" />
           </button>
         ) : (
           <button className={styles["user-icon"]} onClick={openSignInModal}>

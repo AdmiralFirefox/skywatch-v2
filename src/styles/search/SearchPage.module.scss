@@ -1,0 +1,12 @@
+@use "../themeprovider/themeprovider" as theme;
+
+.main-bg {
+  background: url("../../assets/images/main-background.jpg") no-repeat top
+    center fixed;
+  background-size: cover;
+}
+
+.container {
+  width: min(85%, 45em);
+  margin: 1.5em auto 3em auto;
+}
