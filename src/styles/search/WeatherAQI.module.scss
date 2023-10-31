@@ -1,5 +1,26 @@
 @use "../themeprovider/themeprovider" as theme;
 
+@mixin close-button {
+  .close-button {
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    cursor: pointer;
+
+    .icon {
+      font-size: 1.2rem;
+      color: theme.$black-color;
+      transition: color 0.15s ease-in-out;
+
+      &:hover {
+        color: theme.$transparent-black-color;
+      }
+    }
+  }
+}
+
 @mixin air-quality-index-content {
   border-radius: 5px;
   padding: 1em;
@@ -10,6 +31,7 @@
   justify-content: center;
   text-align: center;
   width: 100%;
+  position: relative;
 
   p:first-of-type {
     font-family: "PoppinsMedium";
@@ -20,6 +42,8 @@
     font-family: "PoppinsBold";
     font-size: 1.35rem;
   }
+
+  @include close-button();
 }
 
 .loading {
@@ -31,12 +55,15 @@
   justify-content: center;
   text-align: center;
   padding: 1em;
+  position: relative;
 
   p {
     font-family: "PoppinsMedium";
     font-size: 0.85rem;
     margin-bottom: 0.5em;
   }
+
+  @include close-button();
 }
 
 .error {
@@ -48,6 +75,7 @@
   justify-content: center;
   text-align: center;
   padding: 1em;
+  position: relative;
 
   p:first-of-type {
     font-family: "PoppinsMedium";
@@ -59,6 +87,8 @@
     font-family: "PoppinsBold";
     font-size: 0.85rem;
   }
+
+  @include close-button();
 }
 
 .air-quality-index-good {
