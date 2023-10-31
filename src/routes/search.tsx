@@ -13,6 +13,7 @@ import SectionThree from "../components/Search/SectionThree";
 import { WeatherProps } from "../types/WeatherTypes";
 import { AQIProps } from "../types/AQITypes";
 import { ForecastProps } from "../types/ForecastTypes";
+import SyncLoader from "react-spinners/SyncLoader";
 import styles from "../styles/search/SearchPage.module.scss";
 
 const Search = () => {
@@ -79,17 +80,22 @@ const Search = () => {
         <SearchForm />
 
         {searchedPlace === "" ? (
-          <div>
-            <h1>Search for a City to get started</h1>
-          </div>
+          <section className={styles["initial-content-card"]}>
+            <h1>Search for a City or Country</h1>
+            <p>Suggestion: Try searching your place to get started.</p>
+          </section>
         ) : isLoading ? (
-          <div>
+          <div className={styles["loading-card"]}>
+            <div className={styles["loader-wrapper"]}>
+              <SyncLoader color="#daf3f7" size={20} />
+            </div>
             <h1>Loading...</h1>
           </div>
         ) : isError ? (
-          <div>
-            <h1>Error</h1>
-          </div>
+          <section className={styles["error-card"]}>
+            <h1>We couldn't find what you're looking for</h1>
+            <p>Double check your spelling and make sure that place exist.</p>
+          </section>
         ) : (
           <div className={styles["weather-card"]}>
             <SectionOne

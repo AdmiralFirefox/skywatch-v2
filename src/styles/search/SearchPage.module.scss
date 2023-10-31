@@ -10,6 +10,91 @@
   width: min(85%, 45em);
   margin: 1.5em auto 3em auto;
 
+  .initial-content-card {
+    background: theme.$transparent-light-sky-blue-color;
+    margin: 0em auto 3em auto;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 2em;
+
+    h1 {
+      color: theme.$white-color;
+      font-family: "PoppinsBold";
+      font-size: clamp(1.8rem, 5vw, 2.3rem);
+      text-align: center;
+      line-height: 1.3em;
+      width: min(15em, 100%);
+    }
+
+    p {
+      color: theme.$white-color;
+      font-family: "PoppinsRegular";
+      text-align: center;
+      margin-top: 1em;
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      line-height: 1.4em;
+      width: min(25em, 100%);
+    }
+  }
+
+  .loading-card {
+    background: theme.$transparent-light-sky-blue-color;
+    margin-top: 2em;
+    padding: 3em 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+
+    .loader-wrapper {
+      position: relative;
+      right: 0.5em;
+    }
+
+    h1 {
+      color: theme.$white-color;
+      font-family: "Poppins", sans-serif;
+      font-size: clamp(1.8rem, 5vw, 2.3rem);
+      text-align: center;
+      line-height: 1.3em;
+      font-weight: 700;
+      margin-top: 1em;
+    }
+  }
+
+  .error-card {
+    background: theme.$transparent-light-sky-blue-color;
+    margin: 0em auto 3em auto;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 2em;
+
+    h1 {
+      color: theme.$white-color;
+      font-family: "PoppinsBold";
+      font-size: clamp(1.8rem, 5vw, 2.3rem);
+      text-align: center;
+      line-height: 1.3em;
+      width: min(15em, 100%);
+    }
+
+    p {
+      color: theme.$white-color;
+      font-family: "PoppinsRegular";
+      text-align: center;
+      margin-top: 1em;
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      line-height: 1.4em;
+      width: min(25em, 100%);
+    }
+  }
+
   .weather-card {
     background: theme.$transparent-light-sky-blue-color;
     border-radius: 5px;
