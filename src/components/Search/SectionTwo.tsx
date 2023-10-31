@@ -6,6 +6,7 @@ import Pressure from "../../assets/icons/pressure.png";
 import Wind from "../../assets/icons/wind.png";
 import Visibility from "../../assets/icons/visibility.png";
 import Cloudiness from "../../assets/icons/cloudy-day.png";
+import WeatherAQI from "./WeatherAQI";
 import styles from "../../styles/search/SectionTwo.module.scss";
 
 interface WeatherCardProps {
@@ -84,6 +85,7 @@ const SectionTwo = ({
         cardValue={`${cloudiness as number}%`}
         cardImage={Cloudiness}
       />
+      <WeatherAQI />
     </div>
   );
 };

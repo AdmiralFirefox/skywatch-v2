@@ -1,5 +1,9 @@
 export interface WeatherProps {
   data: {
+    coord: {
+      lon: number;
+      lat: number;
+    };
     main: {
       temp: number;
       temp_min: number;

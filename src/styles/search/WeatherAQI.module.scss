@@ -1,0 +1,82 @@
+@use "../themeprovider/themeprovider" as theme;
+
+@mixin air-quality-index-content {
+  border-radius: 5px;
+  padding: 1em;
+  margin: 0em auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+
+  p:first-of-type {
+    font-family: "PoppinsMedium";
+    font-size: 0.85rem;
+  }
+
+  p:last-of-type {
+    font-family: "PoppinsBold";
+    font-size: 1.35rem;
+  }
+}
+
+.loading {
+  background: theme.$green-color;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1em;
+
+  p {
+    font-family: "PoppinsMedium";
+    font-size: 0.85rem;
+    margin-bottom: 0.5em;
+  }
+}
+
+.error {
+  background: theme.$orange-color;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1em;
+
+  p:first-of-type {
+    font-family: "PoppinsMedium";
+    font-size: 0.85rem;
+    margin-bottom: 0.5em;
+  }
+
+  p:last-of-type {
+    font-family: "PoppinsBold";
+    font-size: 0.85rem;
+  }
+}
+
+.air-quality-index-good {
+  background: theme.$green-color;
+  @include air-quality-index-content();
+}
+
+.air-quality-index-fair {
+  background: theme.$yellow-color;
+  @include air-quality-index-content();
+}
+
+.air-quality-index-poor {
+  background: theme.$dark-yellow-color;
+  @include air-quality-index-content();
+}
+
+.air-quality-index-very-poor {
+  background: theme.$orange-color;
+  @include air-quality-index-content();
+}
