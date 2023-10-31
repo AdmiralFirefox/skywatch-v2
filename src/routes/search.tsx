@@ -4,7 +4,7 @@ import Axios from "axios";
 import { useAppSelector } from "../app/redux_hooks";
 import Navbar from "../components/Navbar/Navbar";
 import SearchForm from "../components/Search/SearchForm";
-import WeatherData from "../components/Search/WeatherData";
+import SectionOne from "../components/Search/SectionOne";
 import { WeatherProps } from "../types/WeatherTypes";
 import styles from "../styles/search/SearchPage.module.scss";
 
@@ -55,15 +55,17 @@ const Search = () => {
             <h1>Error</h1>
           </div>
         ) : (
-          <WeatherData
-            weatherLocation={`${data?.data.name}, ${data?.data.sys.country}`}
-            locationDate={data?.data.timezone}
-            weatherIcon={data?.data.weather[0].icon}
-            weatherCondition={data?.data.weather[0].description}
-            mainTemp={data?.data.main.temp}
-            minTemp={data?.data.main.temp_min}
-            maxTemp={data?.data.main.temp_max}
-          />
+          <div className={styles["weather-card"]}>
+            <SectionOne
+              weatherLocation={`${data?.data.name}, ${data?.data.sys.country}`}
+              locationDate={data?.data.timezone}
+              weatherIcon={data?.data.weather[0].icon}
+              weatherCondition={data?.data.weather[0].description}
+              mainTemp={data?.data.main.temp}
+              minTemp={data?.data.main.temp_min}
+              maxTemp={data?.data.main.temp_max}
+            />
+          </div>
         )}
       </main>
     </>

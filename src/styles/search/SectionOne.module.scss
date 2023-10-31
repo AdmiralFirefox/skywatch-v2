@@ -1,0 +1,86 @@
+@use "../themeprovider/themeprovider" as theme;
+
+.section-one {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+
+  .section-one-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 0.5em;
+
+    p:first-of-type {
+      font-family: "PoppinsRegular";
+      color: theme.$white-color;
+      font-size: 2.1rem;
+    }
+
+    p:nth-of-type(2) {
+      font-family: "PoppinsRegular";
+      color: theme.$white-color;
+      font-size: 1rem;
+    }
+
+    p:last-of-type {
+      font-family: "PoppinsRegular";
+      color: theme.$white-color;
+      font-size: 1.2rem;
+    }
+
+    img {
+      width: 5.5em;
+    }
+  }
+
+  .section-one-temp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 3.6em;
+
+    h1 {
+      font-family: "PoppinsRegular";
+      color: theme.$white-color;
+      font-size: 4rem;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+
+      h2:first-of-type {
+        font-family: "PoppinsRegular";
+        color: theme.$light-blue-color;
+        font-size: 1.8rem;
+      }
+
+      h2:last-of-type {
+        font-family: "PoppinsRegular";
+        color: theme.$light-orange-color;
+        margin-left: 0.5em;
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+@media (min-width: theme.$media-query-normal-value) {
+  .section-one {
+    flex-direction: row;
+    justify-content: space-between;
+
+    .section-one-info {
+      align-items: flex-start;
+      text-align: left;
+      margin-left: 0.5em;
+      margin-top: 0em;
+    }
+
+    .section-one-temp {
+      margin-right: 2em;
+    }
+  }
+}

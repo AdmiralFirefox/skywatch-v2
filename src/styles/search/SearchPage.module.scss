@@ -9,4 +9,11 @@
 .container {
   width: min(85%, 45em);
   margin: 1.5em auto 3em auto;
+
+  .weather-card {
+    background: theme.$transparent-light-sky-blue-color;
+    border-radius: 5px;
+    padding: 2.5em 1.5em;
+    margin-top: 2em;
+  }
 }
