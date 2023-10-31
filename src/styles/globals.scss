@@ -1,5 +1,19 @@
+@use "./themeprovider/themeprovider" as theme;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+// Swiper Buttons
+.swiper-button-next {
+  color: theme.$dark-sky-blue-color;
+  transform: scale(0.85);
+  font-weight: 700;
+}
+.swiper-button-prev {
+  color: theme.$dark-sky-blue-color;
+  transform: scale(0.85);
+  font-weight: 700;
 }

@@ -1,0 +1,35 @@
+@use "../themeprovider/themeprovider" as theme;
+
+.swiper-container {
+  margin-top: 2.5em;
+  width: 100%;
+  height: 100%;
+
+  .swiper-slide {
+    background: theme.$lighter-blue-color;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.5em;
+
+    p {
+      color: theme.$black-color;
+      font-family: "PoppinsRegular";
+      font-size: 0.95rem;
+
+      &:nth-of-type(3) {
+        font-size: 1.4rem;
+      }
+
+      &:last-of-type {
+        font-size: 0.8rem;
+      }
+    }
+
+    img {
+      width: 4em;
+    }
+  }
+}

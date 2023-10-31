@@ -4,12 +4,15 @@ import { useAppSelector } from "../app/redux_hooks";
 import { WeatherAQIContext } from "../context/WeatherAQIContext";
 import { fetchWeatherData } from "../utils/fetchWeatherData";
 import { fetchAQIData } from "../utils/fetchAQI";
+import { fetchForecastData } from "../utils/fetchForecastData";
 import Navbar from "../components/Navbar/Navbar";
 import SearchForm from "../components/Search/SearchForm";
 import SectionOne from "../components/Search/SectionOne";
 import SectionTwo from "../components/Search/SectionTwo";
+import SectionThree from "../components/Search/SectionThree";
 import { WeatherProps } from "../types/WeatherTypes";
 import { AQIProps } from "../types/AQITypes";
+import { ForecastProps } from "../types/ForecastTypes";
 import styles from "../styles/search/SearchPage.module.scss";
 
 const Search = () => {
@@ -46,6 +49,18 @@ const Search = () => {
     aqiLoading,
     aqiError,
   };
+
+  // Forecast Data
+  const {
+    data: forecastData,
+    isLoading: forecastLoading,
+    isError: forecastError,
+  }: UseQueryResult<ForecastProps, Error> = useQuery<ForecastProps, Error>({
+    queryKey: ["forecast", searchedPlace],
+    queryFn: () => fetchForecastData(searchedPlace),
+    staleTime: 30000,
+    enabled: Boolean(searchedPlace),
+  });
 
   // Main Background
   useEffect(() => {
@@ -98,6 +113,11 @@ const Search = () => {
                 cloudiness={data?.data.clouds.all}
               />
             </WeatherAQIContext.Provider>
+            <SectionThree
+              forecastData={forecastData?.data}
+              forecastLoading={forecastLoading}
+              forecastError={forecastError}
+            />
           </div>
         )}
       </main>
