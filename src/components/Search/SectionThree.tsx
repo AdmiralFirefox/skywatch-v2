@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { formatDay, formatTime } from "../../utils/formatDate";
 import { SectionThreeProps } from "../../types/ForecastTypes";
+import SyncLoader from "react-spinners/SyncLoader";
 import styles from "../../styles/search/SectionThree.module.scss";
 
 const SectionThree = ({
@@ -12,12 +13,12 @@ const SectionThree = ({
   return (
     <>
       {forecastLoading ? (
-        <div>
-          <h1>Loading...</h1>
+        <div className={styles["forecast-loading"]}>
+          <SyncLoader color="#daf3f7" size={15} />
         </div>
       ) : forecastError ? (
-        <div>
-          <h1>Loading...</h1>
+        <div className={styles["forecast-error"]}>
+          <h1>Failed to fetch forecast data</h1>
         </div>
       ) : (
         <Swiper

@@ -1,5 +1,24 @@
 @use "../themeprovider/themeprovider" as theme;
 
+.forecast-loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.3em;
+  margin-bottom: 0.5em;
+}
+
+.forecast-error {
+  background: theme.$orange-color;
+  color: theme.$white-color;
+  font-family: "PoppinsRegular";
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  text-align: center;
+  margin-top: 2.3em;
+  margin-bottom: 0.5em;
+  padding: 1.5em 1.3em;
+  border-radius: 5px;
+}
+
 .swiper-container {
   margin-top: 2.5em;
   width: 100%;
