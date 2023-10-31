@@ -17,3 +17,11 @@
     margin-top: 2em;
   }
 }
+
+@media (min-width: theme.$media-query-very-small-value) {
+  .container {
+    .weather-card {
+      padding: 2.5em;
+    }
+  }
+}

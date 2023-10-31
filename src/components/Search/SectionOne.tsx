@@ -24,7 +24,7 @@ const SectionOne = ({
     <div className={styles["section-one"]}>
       <div className={styles["section-one-info"]}>
         <p>{weatherLocation}</p>
-        <p>{formatDate(locationDate)}</p>
+        <p>{formatDate(locationDate as number)}</p>
         <img
           src={`https://openweathermap.org/img/wn/${weatherIcon}.png`}
           alt="Weather Icon"

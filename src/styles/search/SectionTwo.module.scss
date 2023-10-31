@@ -1,0 +1,64 @@
+@use "../themeprovider/themeprovider" as theme;
+
+.section-two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+  grid-gap: 1em;
+  margin-top: 2em;
+
+  .section-two-card {
+    background: theme.$silver-color;
+    padding: 1em;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    div {
+      p:first-of-type {
+        font-family: "PoppinsMedium";
+        color: theme.$black-color;
+        font-size: 0.85rem;
+        text-align: center;
+        margin-top: 0.5em;
+      }
+
+      p:last-of-type {
+        font-family: "PoppinsBold";
+        color: theme.$black-color;
+        font-size: 1.35rem;
+        text-align: center;
+      }
+    }
+
+    img {
+      width: 2.5em;
+    }
+  }
+}
+
+@media (min-width: theme.$media-query-very-small-value) {
+  .section-two {
+    grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+
+    .section-two-card {
+      flex-direction: row;
+      justify-content: space-between;
+
+      div {
+        p:first-of-type {
+          text-align: left;
+          margin-top: 0em;
+        }
+
+        p:last-of-type {
+          text-align: left;
+        }
+      }
+
+      img {
+        margin-left: 0.5em;
+      }
+    }
+  }
+}

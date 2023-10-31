@@ -5,6 +5,7 @@ import { useAppSelector } from "../app/redux_hooks";
 import Navbar from "../components/Navbar/Navbar";
 import SearchForm from "../components/Search/SearchForm";
 import SectionOne from "../components/Search/SectionOne";
+import SectionTwo from "../components/Search/SectionTwo";
 import { WeatherProps } from "../types/WeatherTypes";
 import styles from "../styles/search/SearchPage.module.scss";
 
@@ -64,6 +65,16 @@ const Search = () => {
               mainTemp={data?.data.main.temp}
               minTemp={data?.data.main.temp_min}
               maxTemp={data?.data.main.temp_max}
+            />
+            <SectionTwo
+              timezone={data?.data.timezone}
+              sunrise={data?.data.sys.sunrise}
+              sunset={data?.data.sys.sunset}
+              humidity={data?.data.main.humidity}
+              pressure={data?.data.main.pressure}
+              wind={data?.data.wind.speed}
+              visibility={data?.data.visibility}
+              cloudiness={data?.data.clouds.all}
             />
           </div>
         )}

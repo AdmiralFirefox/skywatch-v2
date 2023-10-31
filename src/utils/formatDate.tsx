@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-export const formatDate = (timeZoneOffset: number | undefined): string => {
+export const formatDate = (timeZoneOffset: number): string => {
   let currentTime = new Date().getTime();
   currentTime = (currentTime - (currentTime % 1000)) / 1000;
 
