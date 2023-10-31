@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store.tsx";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryProvider } from "./provider/QueryProvider.tsx";
 import Home from "./Home.tsx";
 import Search from "./routes/search.tsx";
 import SearchHistory from "./routes/search_history.tsx";
@@ -11,8 +11,6 @@ import Bookmarking from "./routes/bookmarking.tsx";
 import { AuthProvider } from "./provider/AuthProvider.tsx";
 import "./styles/globals.scss";
 import "./styles/fonts.scss";
-
-const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -47,10 +45,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <QueryProvider>
       <Provider store={store}>
         <RouterProvider router={router} />
       </Provider>
-    </QueryClientProvider>
+    </QueryProvider>
   </React.StrictMode>
 );
