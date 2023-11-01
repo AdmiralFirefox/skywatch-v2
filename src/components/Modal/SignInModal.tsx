@@ -1,4 +1,5 @@
 import { useWindowSize } from "../../hooks/useWindowSize";
+import useLockedBody from "../../hooks/useLockedBody";
 import GoogleLogo from "../../assets/icons/google.png";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
@@ -18,6 +19,7 @@ const SignInModal = ({
 }: SignInModalProps) => {
   const { height: windowHeight } = useWindowSize();
 
+  useLockedBody(signInModal, "root");
   return (
     <>
       <AnimatePresence>

@@ -1,4 +1,5 @@
 import { useWindowSize } from "../../hooks/useWindowSize";
+import useLockedBody from "../../hooks/useLockedBody";
 import { FaSignOutAlt } from "react-icons/fa";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
@@ -24,6 +25,7 @@ const SignOutModal = ({
 }: SignOutModalProps) => {
   const { height: windowHeight } = useWindowSize();
 
+  useLockedBody(signOutModal, "root");
   return (
     <>
       <AnimatePresence>

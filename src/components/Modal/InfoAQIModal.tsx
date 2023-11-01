@@ -1,4 +1,5 @@
 import { useWindowSize } from "../../hooks/useWindowSize";
+import useLockedBody from "../../hooks/useLockedBody";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "../../styles/modal/InfoAQIModal.module.scss";
 
@@ -10,6 +11,7 @@ interface InfoAQIModalProps {
 const InfoAQIModal = ({ infoModal, closeInfoModal }: InfoAQIModalProps) => {
   const { height: windowHeight } = useWindowSize();
 
+  useLockedBody(infoModal, "root");
   return (
     <>
       <AnimatePresence>
