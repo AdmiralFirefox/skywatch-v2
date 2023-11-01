@@ -2,7 +2,7 @@
 
 .nav-icon {
   text-decoration: none;
-  background: theme.$dark-blue-color;
+  background: theme.$dark-grey-color;
   color: theme.$white-color;
   font-size: 1.6rem;
   padding: 0.25em 0.3em;
@@ -10,7 +10,7 @@
   transition: background 0.15s ease-in-out;
 
   &:hover {
-    background: theme.$transparent-dark-sky-blue-color;
+    background: theme.$slightly-dark-grey-color;
   }
 }
 
