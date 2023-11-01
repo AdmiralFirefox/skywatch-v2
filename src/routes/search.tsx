@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { useAppSelector } from "../app/redux_hooks";
 import { WeatherAQIContext } from "../context/WeatherAQIContext";
@@ -63,14 +63,45 @@ const Search = () => {
     enabled: Boolean(searchedPlace),
   });
 
+  // Check day/night time cycle
+  const [changeTheme, setChangeTheme] = useState("");
+
+  let currentTime = new Date().getTime();
+  currentTime = (currentTime - (currentTime % 1000)) / 1000;
+
+  const timestamp = currentTime;
+  const timeZoneOffset = data?.data.timezone;
+  const date = new Date(timestamp * 1000);
+  const localTimestamp =
+    timestamp + date.getTimezoneOffset() * 60 + timeZoneOffset!;
+  const localDate = new Date(localTimestamp * 1000);
+  const localHour = localDate.getHours();
+  const isDayTime = localHour >= 6 && localHour < 18;
+
   // Main Background
   useEffect(() => {
-    document.getElementsByTagName("body")[0].className = styles["main-bg"];
+    if (isDayTime) {
+      setChangeTheme("day");
+    } else if (data?.data.timezone === undefined) {
+      setChangeTheme(changeTheme);
+    } else {
+      setChangeTheme("night");
+    }
+
+    if (changeTheme === "") {
+      document.getElementsByTagName("body")[0].className = styles["main-bg"];
+    } else if (changeTheme === "day") {
+      document.getElementsByTagName("body")[0].className =
+        styles["main-bg-day"];
+    } else {
+      document.getElementsByTagName("body")[0].className =
+        styles["main-bg-night"];
+    }
 
     return () => {
       document.getElementsByTagName("body")[0].className = "";
     };
-  }, []);
+  }, [isDayTime, changeTheme, data?.data.timezone]);
 
   return (
     <>
@@ -85,19 +116,49 @@ const Search = () => {
             <p>Suggestion: Try searching your place to get started.</p>
           </section>
         ) : isLoading ? (
-          <div className={styles["loading-card"]}>
+          <div
+            className={styles["loading-card"]}
+            style={{
+              background:
+                changeTheme === ""
+                  ? "hsla(182, 13%, 42%, 0.7)"
+                  : changeTheme === "day"
+                  ? "hsla(202, 58%, 35%, 0.75)"
+                  : "hsla(254, 14%, 45%, 0.75)",
+            }}
+          >
             <div className={styles["loader-wrapper"]}>
               <SyncLoader color="#daf3f7" size={20} />
             </div>
             <h1>Loading...</h1>
           </div>
         ) : isError ? (
-          <section className={styles["error-card"]}>
+          <section
+            className={styles["error-card"]}
+            style={{
+              background:
+                changeTheme === ""
+                  ? "hsla(182, 13%, 42%, 0.7)"
+                  : changeTheme === "day"
+                  ? "hsla(202, 58%, 35%, 0.75)"
+                  : "hsla(254, 14%, 45%, 0.75)",
+            }}
+          >
             <h1>We couldn't find what you're looking for</h1>
             <p>Double check your spelling and make sure that place exist.</p>
           </section>
         ) : (
-          <div className={styles["weather-card"]}>
+          <div
+            className={styles["weather-card"]}
+            style={{
+              background:
+                changeTheme === ""
+                  ? "hsla(182, 13%, 42%, 0.7)"
+                  : changeTheme === "day"
+                  ? "hsla(202, 58%, 35%, 0.75)"
+                  : "hsla(254, 14%, 45%, 0.75)",
+            }}
+          >
             <SectionOne
               weatherLocation={`${data?.data.name}, ${data?.data.sys.country}`}
               locationDate={data?.data.timezone}

@@ -6,6 +6,18 @@
   background-size: cover;
 }
 
+.main-bg-day {
+  background: url("../../assets/images/day-background.jpg") no-repeat top center
+    fixed;
+  background-size: cover;
+}
+
+.main-bg-night {
+  background: url("../../assets/images/night-background.jpg") no-repeat top
+    center fixed;
+  background-size: cover;
+}
+
 .container {
   width: min(85%, 45em);
   margin: 1.5em auto 3em auto;
@@ -41,7 +53,6 @@
   }
 
   .loading-card {
-    background: theme.$transparent-light-sky-blue-color;
     margin-top: 2em;
     padding: 3em 2em;
     display: flex;
@@ -66,7 +77,6 @@
   }
 
   .error-card {
-    background: theme.$transparent-light-sky-blue-color;
     margin: 0em auto 3em auto;
     padding: 2em;
     display: flex;
@@ -96,7 +106,6 @@
   }
 
   .weather-card {
-    background: theme.$transparent-light-sky-blue-color;
     border-radius: 5px;
     padding: 2.5em 1.5em;
     margin-top: 2em;
