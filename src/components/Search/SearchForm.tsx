@@ -19,6 +19,8 @@ const SearchForm = () => {
     if (inputRef.current) {
       inputRef.current.blur();
     }
+
+    setSearchPlace("");
   };
 
   return (
