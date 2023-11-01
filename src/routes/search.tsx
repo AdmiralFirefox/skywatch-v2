@@ -1,5 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { db } from "../firebase/firebase";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  updateDoc,
+  doc,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { AuthContext } from "../context/AuthContext";
 import { useAppSelector } from "../app/redux_hooks";
 import { WeatherAQIContext } from "../context/WeatherAQIContext";
 import { fetchWeatherData } from "../utils/fetchWeatherData";
@@ -17,6 +29,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 import styles from "../styles/search/SearchPage.module.scss";
 
 const Search = () => {
+  const user = useContext(AuthContext);
   const searchedPlace = useAppSelector((state) => state.search.searchValue);
 
   // Weather Data
@@ -102,6 +115,41 @@ const Search = () => {
       document.getElementsByTagName("body")[0].className = "";
     };
   }, [isDayTime, changeTheme, data?.data.timezone]);
+
+  // Add Queries to Search History
+  useEffect(() => {
+    if (data?.data !== undefined) {
+      const searchedCountriesRef = collection(db, "searched_countries");
+      const placeValue = `${data?.data.name}, ${data?.data.sys.country}`;
+
+      const q = query(searchedCountriesRef, where("place", "==", placeValue));
+
+      const addToHistory = async () => {
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+          // Document exists, update the time_searched value
+          const docRef = doc(
+            db,
+            "searched_countries",
+            querySnapshot.docs[0].id
+          );
+          await updateDoc(docRef, {
+            time_searched: serverTimestamp(),
+          });
+        } else {
+          // Document doesn't exist, add a new document
+          await addDoc(searchedCountriesRef, {
+            time_searched: serverTimestamp(),
+            place: placeValue,
+            temp: data?.data.main.temp,
+            icon: data?.data.weather[0].icon,
+          });
+        }
+      };
+
+      addToHistory();
+    }
+  }, [data?.data, user]);
 
   return (
     <>

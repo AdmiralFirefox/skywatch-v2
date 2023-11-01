@@ -1,0 +1,46 @@
+@use "../themeprovider/themeprovider" as theme;
+
+.main-bg {
+  background: url("../../assets/images/main-background.jpg") no-repeat top
+    center fixed;
+  background-size: cover;
+}
+
+.history-card {
+  width: min(85%, 45em);
+  margin: 1.5em auto 3em auto;
+  background: theme.$transparent-dark-purple-color;
+  padding: 1.5em;
+  border-radius: 5px;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+
+    h1 {
+      color: theme.$white-color;
+      font-family: "PoppinsBold";
+      text-align: center;
+      font-size: 1.8rem;
+    }
+
+    button {
+      background: theme.$orange-color;
+      color: theme.$white-color;
+      font-family: "PoppinsSemiBold";
+      border: none;
+      padding: 0.7em 1em;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      text-align: center;
+      transition: background 0.15s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background: theme.$light-orange-color;
+      }
+    }
+  }
+}
