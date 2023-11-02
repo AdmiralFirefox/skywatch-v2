@@ -43,4 +43,97 @@
       }
     }
   }
+
+  .cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 2.2em;
+
+    .country-card {
+      background: theme.$lighter-blue-color;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      gap: 0.2em;
+      transition: background 0.15s ease-in-out;
+
+      .first-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 0.5em;
+
+        img {
+          width: 6em;
+        }
+
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+
+          h1:first-of-type {
+            color: theme.$black-color;
+            font-family: "PoppinsBold";
+            font-size: 2rem;
+            text-align: center;
+          }
+
+          h1:last-of-type {
+            color: theme.$black-color;
+            font-family: "PoppinsBold";
+            font-size: 1.6rem;
+            text-align: center;
+            overflow-wrap: anywhere;
+          }
+        }
+      }
+
+      .second-section {
+        p {
+          color: theme.$black-color;
+          font-family: "PoppinsRegular";
+          font-size: 0.9rem;
+        }
+      }
+
+      &:hover {
+        background: theme.$light-blue-color;
+      }
+    }
+  }
+}
+
+@media (min-width: theme.$media-query-very-small-value) {
+  .history-card {
+    .cards-container {
+      .country-card {
+        align-items: flex-start;
+
+        .first-section {
+          flex-direction: row;
+
+          div {
+            flex-direction: row-reverse;
+            justify-content: space-between;
+
+            h1:first-of-type {
+              text-align: right;
+            }
+
+            h1:last-of-type {
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
 }

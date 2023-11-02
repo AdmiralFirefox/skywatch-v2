@@ -118,7 +118,7 @@ const Search = () => {
 
   // Add Queries to Search History
   useEffect(() => {
-    if (data?.data !== undefined) {
+    if (data?.data !== undefined && user) {
       const searchedCountriesRef = collection(db, "searched_countries");
       const placeValue = `${data?.data.name}, ${data?.data.sys.country}`;
 
@@ -127,7 +127,7 @@ const Search = () => {
       const addToHistory = async () => {
         const querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
-          // Document exists, update the time_searched value
+          // Document exists, update the time_searched, temp and icon value
           const docRef = doc(
             db,
             "searched_countries",
@@ -135,6 +135,8 @@ const Search = () => {
           );
           await updateDoc(docRef, {
             time_searched: serverTimestamp(),
+            temp: data?.data.main.temp,
+            icon: data?.data.weather[0].icon,
           });
         } else {
           // Document doesn't exist, add a new document
