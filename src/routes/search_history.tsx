@@ -59,6 +59,23 @@ const SearchHistory = () => {
     });
   };
 
+  // Deleting all searched countries from the collection
+  const deleteAllSearchedCountries = async () => {
+    const searchedCountriesRef = collection(db, "searched_countries");
+
+    const snapshot = await getDocs(searchedCountriesRef);
+    snapshot.docs.forEach((doc) => {
+      deleteDoc(doc.ref);
+    });
+  };
+
+  const handleDeleteAll = () => {
+    deleteAllSearchedCountries().then(() => {
+      setSearchedCountries([]);
+      setDeleteSearchesModal(false);
+    });
+  };
+
   // Getting searched countries from the collection
   useEffect(() => {
     setLoadingSearches(true);
@@ -106,9 +123,11 @@ const SearchHistory = () => {
       <main className={styles["history-card"]}>
         <div className={styles["header"]}>
           <h1>Recent Searches</h1>
-          <button onClick={openDeleteSearchesModal}>
-            Clear Search History
-          </button>
+          {searchedCountries.length === 0 ? null : (
+            <button onClick={openDeleteSearchesModal}>
+              Clear Search History
+            </button>
+          )}
         </div>
 
         {searchedCountries.length === 0 && !loadingSearches ? (
@@ -169,6 +188,7 @@ const SearchHistory = () => {
       <DeleteSearchesModal
         deleteSearchesModal={deleteSearchesModal}
         closeDeleteSearchesModal={closeDeleteSearchesModal}
+        handleDeleteAll={handleDeleteAll}
       />
     </>
   );

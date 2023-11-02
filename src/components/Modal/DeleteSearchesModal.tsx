@@ -6,11 +6,13 @@ import styles from "../../styles/modal/DeleteSearchesModal.module.scss";
 interface DeleteSearchesModalProps {
   deleteSearchesModal: boolean;
   closeDeleteSearchesModal: () => void;
+  handleDeleteAll: () => void;
 }
 
 const DeleteSearchesModal = ({
   deleteSearchesModal,
   closeDeleteSearchesModal,
+  handleDeleteAll,
 }: DeleteSearchesModalProps) => {
   const { height: windowHeight } = useWindowSize();
 
@@ -45,7 +47,7 @@ const DeleteSearchesModal = ({
           >
             <h1>Are you sure you want to delete all your searches?</h1>
             <div className={styles["button-wrapper"]}>
-              <button onClick={closeDeleteSearchesModal}>Yes</button>
+              <button onClick={handleDeleteAll}>Yes</button>
               <button onClick={closeDeleteSearchesModal}>No</button>
             </div>
           </motion.div>
