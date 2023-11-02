@@ -1,15 +1,24 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+} from "firebase/firestore";
+import dayjs from "dayjs";
 import { db } from "../firebase/firebase";
 import { useAppDispatch } from "../app/redux_hooks";
 import { setSearchValue } from "../features/search/searchSlice";
 import { getTimePassed } from "../utils/getTimePassed";
 import { AuthContext } from "../context/AuthContext";
 import Navbar from "../components/Navbar/Navbar";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { IconContext } from "react-icons";
 import { SearchHistoryProps } from "../types/SearchHistoryTypes";
 import styles from "../styles/search_history/SearchHistory.module.scss";
-import dayjs from "dayjs";
 
 const SearchHistory = () => {
   const user = useContext(AuthContext);
@@ -23,6 +32,20 @@ const SearchHistory = () => {
   const goToSearchPage = (searchedPlace: string | undefined) => {
     navigate("/search");
     dispatch(setSearchValue(searchedPlace as string));
+  };
+
+  // Deleting a country
+  const deleteSearchedCountry = async (docId: string) => {
+    const docRef = doc(db, "searched_countries", docId);
+    await deleteDoc(docRef);
+  };
+
+  const handleDelete = (docId: string) => {
+    deleteSearchedCountry(docId).then(() => {
+      setSearchedCountries(
+        searchedCountries.filter((country) => country.id !== docId)
+      );
+    });
   };
 
   // Getting searched countries from the collection
@@ -85,34 +108,47 @@ const SearchHistory = () => {
           </div>
         ) : (
           <div className={styles["cards-container"]}>
-            {searchedCountries.map((country, i) => (
-              <button
-                key={i}
-                className={styles["country-card"]}
-                onClick={() => goToSearchPage(country.place)}
-              >
+            {searchedCountries.map((country) => (
+              <div key={country.id} className={styles["country-card"]}>
+                <button
+                  className={styles["delete-country"]}
+                  onClick={() => handleDelete(country.id)}
+                >
+                  <IconContext.Provider
+                    value={{ className: styles["delete-icon"] }}
+                  >
+                    <AiFillCloseCircle />
+                  </IconContext.Provider>
+                </button>
                 <div className={styles["first-section"]}>
                   <img
                     src={`https://openweathermap.org/img/wn/${country.icon}.png`}
                     alt="Weather Icon"
                   />
                   <div>
-                    <h1>{`${Math.round(country.temp as number)}°`}</h1>
-                    <h1>{country.place}</h1>
+                    <h1 className={styles["country-temp"]}>{`${Math.round(
+                      country.temp as number
+                    )}°`}</h1>
+                    <button onClick={() => goToSearchPage(country.place)}>
+                      <h1 className={styles["country-name"]}>
+                        {country.place}
+                      </h1>
+                    </button>
                   </div>
                 </div>
 
                 <div className={styles["second-section"]}>
                   <p>
-                    {country.time_searched!.seconds !== undefined &&
-                      getTimePassed(
-                        dayjs(country.time_searched!.seconds * 1000).format(
-                          "MMMM D YYYY, h:mm:ss a"
-                        )
-                      )}
+                    {country.time_searched!.seconds === null
+                      ? "null"
+                      : getTimePassed(
+                          dayjs(country.time_searched!.seconds * 1000).format(
+                            "MMMM D YYYY, h:mm:ss a"
+                          )
+                        )}
                   </p>
                 </div>
-              </button>
+              </div>
             ))}
           </div>
         )}

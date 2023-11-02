@@ -58,19 +58,40 @@
       padding: 1em;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
       gap: 0.2em;
-      transition: background 0.15s ease-in-out;
+      position: relative;
+
+      .delete-country {
+        background: transparent;
+        border: none;
+        padding: 0.2em;
+        border-radius: 5px;
+        position: absolute;
+        right: 0.45em;
+        top: 0.45em;
+        z-index: 2;
+        cursor: pointer;
+
+        .delete-icon {
+          color: theme.$orange-color;
+          font-size: 1.3rem;
+          transition: color 0.15s ease-in-out;
+
+          &:hover {
+            color: theme.$light-orange-color;
+          }
+        }
+      }
 
       .first-section {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        gap: 0.5em;
+        gap: 0.2em;
 
         img {
-          width: 6em;
+          width: 4.7em;
         }
 
         div {
@@ -79,19 +100,26 @@
           align-items: center;
           width: 100%;
 
-          h1:first-of-type {
+          .country-temp {
             color: theme.$black-color;
             font-family: "PoppinsBold";
             font-size: 2rem;
             text-align: center;
           }
 
-          h1:last-of-type {
-            color: theme.$black-color;
-            font-family: "PoppinsBold";
-            font-size: 1.6rem;
-            text-align: center;
-            overflow-wrap: anywhere;
+          button {
+            border: none;
+            background: none;
+            margin-top: 0.5em;
+
+            .country-name {
+              color: theme.$black-color;
+              font-family: "PoppinsBold";
+              font-size: 1.6rem;
+              text-align: center;
+              overflow-wrap: anywhere;
+              cursor: pointer;
+            }
           }
         }
       }
@@ -102,10 +130,6 @@
           font-family: "PoppinsRegular";
           font-size: 0.9rem;
         }
-      }
-
-      &:hover {
-        background: theme.$light-blue-color;
       }
     }
   }
@@ -124,12 +148,18 @@
             flex-direction: row-reverse;
             justify-content: space-between;
 
-            h1:first-of-type {
+            .country-temp {
               text-align: right;
+              margin-left: 0.3em;
+              margin-right: 0.8em;
             }
 
-            h1:last-of-type {
-              text-align: left;
+            button {
+              margin-top: 0em;
+
+              .country-name {
+                text-align: left;
+              }
             }
           }
         }
