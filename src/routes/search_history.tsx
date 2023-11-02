@@ -7,6 +7,7 @@ import {
   getDocs,
   orderBy,
   query,
+  where,
 } from "firebase/firestore";
 import dayjs from "dayjs";
 import { db } from "../firebase/firebase";
@@ -66,8 +67,9 @@ const SearchHistory = () => {
   // Deleting all searched countries from the collection
   const deleteAllSearchedCountries = async () => {
     const searchedCountriesRef = collection(db, "searched_countries");
+    const q = query(searchedCountriesRef, where("owner", "==", user!.uid));
 
-    const snapshot = await getDocs(searchedCountriesRef);
+    const snapshot = await getDocs(q);
     snapshot.docs.forEach((doc) => {
       deleteDoc(doc.ref);
     });
@@ -86,7 +88,11 @@ const SearchHistory = () => {
     if (user) {
       const getSearchedCountries = async () => {
         const searchedCountriesRef = collection(db, "searched_countries");
-        const q = query(searchedCountriesRef, orderBy("time_searched", "desc"));
+        const q = query(
+          searchedCountriesRef,
+          orderBy("time_searched", "desc"),
+          where("owner", "==", user!.uid)
+        );
 
         const snapshot = await getDocs(q);
         const searchedCountries = snapshot.docs.map((doc) => ({

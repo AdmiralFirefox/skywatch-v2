@@ -122,7 +122,11 @@ const Search = () => {
       const searchedCountriesRef = collection(db, "searched_countries");
       const placeValue = `${data?.data.name}, ${data?.data.sys.country}`;
 
-      const q = query(searchedCountriesRef, where("place", "==", placeValue));
+      const q = query(
+        searchedCountriesRef,
+        where("place", "==", placeValue),
+        where("owner", "==", user!.uid)
+      );
 
       const addToHistory = async () => {
         const querySnapshot = await getDocs(q);
@@ -145,6 +149,7 @@ const Search = () => {
             place: placeValue,
             temp: data?.data.main.temp,
             icon: data?.data.weather[0].icon,
+            owner: user!.uid,
           });
         }
       };
