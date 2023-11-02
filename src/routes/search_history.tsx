@@ -170,13 +170,14 @@ const SearchHistory = () => {
                 </div>
                 <div className={styles["second-section"]}>
                   <p>
-                    {country.time_searched! !== null &&
-                      country.time_searched! !== undefined &&
-                      getTimePassed(
-                        dayjs(country.time_searched!.seconds * 1000).format(
-                          "MMMM D YYYY, h:mm:ss a"
-                        )
-                      )}
+                    {country.time_searched! === null ||
+                    country.time_searched! === undefined
+                      ? "a few seconds ago"
+                      : getTimePassed(
+                          dayjs(country.time_searched!.seconds * 1000).format(
+                            "MMMM D YYYY, h:mm:ss a"
+                          )
+                        )}
                   </p>
                 </div>
               </div>
