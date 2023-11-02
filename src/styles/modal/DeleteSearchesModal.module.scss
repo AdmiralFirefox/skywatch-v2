@@ -1,0 +1,68 @@
+@use "../themeprovider/themeprovider" as theme;
+
+.backdrop {
+  background: theme.$transparent-black-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.modal {
+  position: fixed;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  overflow-y: auto;
+  width: min(85%, 45em);
+  background: theme.$darker-grey-color;
+  padding: 2em;
+  border-radius: 5px;
+
+  h1 {
+    color: theme.$white-color;
+    font-family: "PoppinsMedium";
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    margin-top: 0.2em;
+    text-align: center;
+    width: min(100%, 25em);
+  }
+
+  .button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.3em;
+
+    button {
+      color: theme.$white-color;
+      font-size: 1.2rem;
+      font-family: "PoppinsSemiBold";
+      border: none;
+      padding: 0.5em 0.8em;
+      border-radius: 5px;
+      margin-top: 2em;
+      cursor: pointer;
+
+      &:first-of-type {
+        background: theme.$orange-color;
+        transition: background 0.15s ease-in-out;
+
+        &:hover {
+          background: theme.$light-orange-color;
+        }
+      }
+
+      &:last-of-type {
+        background: theme.$gray-color;
+        transition: background 0.15s ease-in-out;
+
+        &:hover {
+          background: theme.$lighter-gray-color;
+        }
+      }
+    }
+  }
+}

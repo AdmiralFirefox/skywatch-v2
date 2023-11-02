@@ -15,6 +15,7 @@ import { setSearchValue } from "../features/search/searchSlice";
 import { getTimePassed } from "../utils/getTimePassed";
 import { AuthContext } from "../context/AuthContext";
 import Navbar from "../components/Navbar/Navbar";
+import DeleteSearchesModal from "../components/Modal/DeleteSearchesModal";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { SearchHistoryProps } from "../types/SearchHistoryTypes";
@@ -27,6 +28,7 @@ const SearchHistory = () => {
   const [searchedCountries, setSearchedCountries] = useState<
     SearchHistoryProps[]
   >([]);
+  const [deleteSearchesModal, setDeleteSearchesModal] = useState(false);
   const [loadingSearches, setLoadingSearches] = useState(false);
 
   const goToSearchPage = (searchedPlace: string | undefined) => {
@@ -34,7 +36,16 @@ const SearchHistory = () => {
     dispatch(setSearchValue(searchedPlace as string));
   };
 
-  // Deleting a country
+  // Delete Searches Modal
+  const openDeleteSearchesModal = () => {
+    setDeleteSearchesModal(true);
+  };
+
+  const closeDeleteSearchesModal = () => {
+    setDeleteSearchesModal(false);
+  };
+
+  // Deleting a country from the collection
   const deleteSearchedCountry = async (docId: string) => {
     const docRef = doc(db, "searched_countries", docId);
     await deleteDoc(docRef);
@@ -95,7 +106,9 @@ const SearchHistory = () => {
       <main className={styles["history-card"]}>
         <div className={styles["header"]}>
           <h1>Recent Searches</h1>
-          <button>Clear Search History</button>
+          <button onClick={openDeleteSearchesModal}>
+            Clear Search History
+          </button>
         </div>
 
         {searchedCountries.length === 0 && !loadingSearches ? (
@@ -136,7 +149,6 @@ const SearchHistory = () => {
                     </button>
                   </div>
                 </div>
-
                 <div className={styles["second-section"]}>
                   <p>
                     {country.time_searched!.seconds === null
@@ -153,6 +165,11 @@ const SearchHistory = () => {
           </div>
         )}
       </main>
+
+      <DeleteSearchesModal
+        deleteSearchesModal={deleteSearchesModal}
+        closeDeleteSearchesModal={closeDeleteSearchesModal}
+      />
     </>
   );
 };
