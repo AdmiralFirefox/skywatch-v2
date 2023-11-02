@@ -1,0 +1,34 @@
+@use "../themeprovider/themeprovider" as theme;
+
+.wrapper {
+  width: min(85%, 45em);
+  margin: 1.5em auto 3em auto;
+  background: theme.$transparent-dark-purple-color;
+  padding: 2.5em 2em;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: 4em;
+  }
+
+  h1 {
+    font-family: "PoppinsBold";
+    color: theme.$white-color;
+    font-size: clamp(1.7rem, 2.5vw, 2rem);
+    text-align: center;
+    margin-top: 0.4em;
+    line-height: 1.2em;
+  }
+
+  p {
+    font-family: "PoppinsMedium";
+    color: theme.$white-color;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    text-align: center;
+    margin-top: 0.6em;
+    line-height: 1.5em;
+  }
+}

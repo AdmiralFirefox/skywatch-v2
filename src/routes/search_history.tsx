@@ -14,8 +14,12 @@ import { useAppDispatch } from "../app/redux_hooks";
 import { setSearchValue } from "../features/search/searchSlice";
 import { getTimePassed } from "../utils/getTimePassed";
 import { AuthContext } from "../context/AuthContext";
+import SearchImage from "../assets/icons/search.png";
+import SignInImage from "../assets/icons/sign-in.png";
 import Navbar from "../components/Navbar/Navbar";
 import DeleteSearchesModal from "../components/Modal/DeleteSearchesModal";
+import Loading from "../components/Placeholder/Loading";
+import Placeholder from "../components/Placeholder/Placeholder";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { SearchHistoryProps } from "../types/SearchHistoryTypes";
@@ -111,7 +115,11 @@ const SearchHistory = () => {
     return (
       <>
         <Navbar />
-        <h1>Not Signed in</h1>
+        <Placeholder
+          image={SignInImage}
+          title="You are not signed in."
+          subtitle="Please sign in to use the bookmarking feature of SkyWatch."
+        />
       </>
     );
   }
@@ -120,25 +128,25 @@ const SearchHistory = () => {
     <>
       <Navbar />
 
-      <main className={styles["history-card"]}>
-        <div className={styles["header"]}>
-          <h1>Recent Searches</h1>
-          {searchedCountries.length === 0 ? null : (
-            <button onClick={openDeleteSearchesModal}>
-              Clear Search History
-            </button>
-          )}
-        </div>
+      {searchedCountries.length === 0 && !loadingSearches ? (
+        <Placeholder
+          image={SearchImage}
+          title="You have no recent searches."
+          subtitle="Try searching for a city or country."
+        />
+      ) : loadingSearches ? (
+        <Loading />
+      ) : (
+        <main className={styles["history-card"]}>
+          <div className={styles["header"]}>
+            <h1>Recent Searches</h1>
+            {searchedCountries.length === 0 ? null : (
+              <button onClick={openDeleteSearchesModal}>
+                Clear Search History
+              </button>
+            )}
+          </div>
 
-        {searchedCountries.length === 0 && !loadingSearches ? (
-          <div>
-            <h1>You have no recent searches</h1>
-          </div>
-        ) : loadingSearches ? (
-          <div>
-            <h1>Loading...</h1>
-          </div>
-        ) : (
           <div className={styles["cards-container"]}>
             {searchedCountries.map((country) => (
               <div key={country.id} className={styles["country-card"]}>
@@ -183,8 +191,8 @@ const SearchHistory = () => {
               </div>
             ))}
           </div>
-        )}
-      </main>
+        </main>
+      )}
 
       <DeleteSearchesModal
         deleteSearchesModal={deleteSearchesModal}
