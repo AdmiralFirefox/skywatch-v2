@@ -92,13 +92,18 @@ const Search = () => {
     await addDoc(bookmarksRef, {
       time_added: serverTimestamp(),
       place: placeValue,
+      owner: user!.uid,
     });
   };
 
   // Remove from Bookmarks (based on the place value)
   const deleteFromBookmarks = async (placeValue: string) => {
     const bookmarksRef = collection(db, "bookmarks");
-    const q = query(bookmarksRef, where("place", "==", placeValue));
+    const q = query(
+      bookmarksRef,
+      where("place", "==", placeValue),
+      where("owner", "==", user!.uid)
+    );
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -195,7 +200,11 @@ const Search = () => {
       const bookmarksRef = collection(db, "bookmarks");
       const placeValue = `${data?.data.name}, ${data?.data.sys.country}`;
 
-      const q = query(bookmarksRef, where("place", "==", placeValue));
+      const q = query(
+        bookmarksRef,
+        where("place", "==", placeValue),
+        where("owner", "==", user!.uid)
+      );
 
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         if (!querySnapshot.empty) {

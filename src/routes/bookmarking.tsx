@@ -7,6 +7,7 @@ import {
   onSnapshot,
   orderBy,
   query,
+  where,
 } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import { AuthContext } from "../context/AuthContext";
@@ -51,7 +52,11 @@ const Bookmarking = () => {
     setLoadingBookmarks(true);
     if (user) {
       const bookmarksRef = collection(db, "bookmarks");
-      const q = query(bookmarksRef, orderBy("time_added", "desc"));
+      const q = query(
+        bookmarksRef,
+        orderBy("time_added", "desc"),
+        where("owner", "==", user!.uid)
+      );
 
       const unsubscribe = onSnapshot(q, (snapshot) => {
         const bookmarks = snapshot.docs.map((doc) => ({
