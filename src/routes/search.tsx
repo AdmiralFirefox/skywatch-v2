@@ -195,8 +195,9 @@ const Search = () => {
 
   // Check if the place exists in bookmarks (in real-time)
   useEffect(() => {
-    setIconLoading(true);
     if (data?.data !== undefined && user) {
+      setIconLoading(true);
+
       const bookmarksRef = collection(db, "bookmarks");
       const placeValue = `${data?.data.name}, ${data?.data.sys.country}`;
 
