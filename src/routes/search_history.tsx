@@ -125,7 +125,7 @@ const SearchHistory = () => {
         <Placeholder
           image={SignInImage}
           title="You are not signed in."
-          subtitle="Please sign in to use the bookmarking feature of SkyWatch."
+          subtitle="Please sign in to keep track of your recent searches."
         />
       </>
     );
@@ -154,9 +154,9 @@ const SearchHistory = () => {
             )}
           </div>
 
-          <div className={styles["cards-container"]}>
+          <ul className={styles["cards-container"]}>
             {searchedCountries.map((country) => (
-              <div key={country.id} className={styles["country-card"]}>
+              <li key={country.id} className={styles["country-card"]}>
                 <button
                   className={styles["delete-country"]}
                   onClick={() => handleDelete(country.id)}
@@ -195,9 +195,9 @@ const SearchHistory = () => {
                         )}
                   </p>
                 </div>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </main>
       )}
 

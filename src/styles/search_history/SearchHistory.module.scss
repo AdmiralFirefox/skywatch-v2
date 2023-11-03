@@ -51,6 +51,7 @@
     margin-top: 2.2em;
 
     .country-card {
+      list-style: none;
       background: theme.$lighter-blue-color;
       display: flex;
       flex-direction: column;
