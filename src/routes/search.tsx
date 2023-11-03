@@ -10,6 +10,8 @@ import {
   doc,
   addDoc,
   serverTimestamp,
+  onSnapshot,
+  deleteDoc,
 } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 import { useAppSelector } from "../app/redux_hooks";
@@ -22,6 +24,10 @@ import SearchForm from "../components/Search/SearchForm";
 import SectionOne from "../components/Search/SectionOne";
 import SectionTwo from "../components/Search/SectionTwo";
 import SectionThree from "../components/Search/SectionThree";
+import { AiFillHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
+import { IconContext } from "react-icons";
+import FadeLoader from "react-spinners/FadeLoader";
 import { WeatherProps } from "../types/WeatherTypes";
 import { AQIProps } from "../types/AQITypes";
 import { ForecastProps } from "../types/ForecastTypes";
@@ -31,6 +37,8 @@ import styles from "../styles/search/SearchPage.module.scss";
 const Search = () => {
   const user = useContext(AuthContext);
   const searchedPlace = useAppSelector((state) => state.search.searchValue);
+  const [favoritesExist, setFavoritesExist] = useState(false);
+  const [iconLoading, setIconLoading] = useState(false);
 
   // Weather Data
   const { data, isLoading, isError }: UseQueryResult<WeatherProps, Error> =
@@ -75,6 +83,28 @@ const Search = () => {
     staleTime: 30000,
     enabled: Boolean(searchedPlace),
   });
+
+  // Add to Bookmarks
+  const addToBookmarks = async () => {
+    const bookmarksRef = collection(db, "bookmarks");
+    const placeValue = `${data?.data.name}, ${data?.data.sys.country}`;
+
+    await addDoc(bookmarksRef, {
+      time_added: serverTimestamp(),
+      place: placeValue,
+    });
+  };
+
+  // Remove from Bookmarks (based on the place value)
+  const deleteFromBookmarks = async (placeValue: string) => {
+    const bookmarksRef = collection(db, "bookmarks");
+    const q = query(bookmarksRef, where("place", "==", placeValue));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      deleteDoc(doc.ref);
+    });
+  };
 
   // Check day/night time cycle
   const [changeTheme, setChangeTheme] = useState("");
@@ -158,6 +188,30 @@ const Search = () => {
     }
   }, [data?.data, user]);
 
+  // Check if the place exists in bookmarks (in real-time)
+  useEffect(() => {
+    setIconLoading(true);
+    if (data?.data !== undefined && user) {
+      const bookmarksRef = collection(db, "bookmarks");
+      const placeValue = `${data?.data.name}, ${data?.data.sys.country}`;
+
+      const q = query(bookmarksRef, where("place", "==", placeValue));
+
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        if (!querySnapshot.empty) {
+          setFavoritesExist(true);
+          setIconLoading(false);
+        } else {
+          setFavoritesExist(false);
+          setIconLoading(false);
+        }
+      });
+
+      // Clean up the subscription on unmount
+      return () => unsubscribe();
+    }
+  }, [data?.data, user]);
+
   return (
     <>
       <Navbar />
@@ -214,6 +268,36 @@ const Search = () => {
                   : "hsla(254, 14%, 45%, 0.75)",
             }}
           >
+            {user && !favoritesExist && !iconLoading ? (
+              <button className={styles["bookmark"]} onClick={addToBookmarks}>
+                <IconContext.Provider value={{ className: styles["icon"] }}>
+                  <AiOutlineHeart />
+                </IconContext.Provider>
+              </button>
+            ) : favoritesExist && user && !iconLoading ? (
+              <button
+                className={styles["bookmark"]}
+                onClick={() =>
+                  deleteFromBookmarks(
+                    `${data?.data.name}, ${data?.data.sys.country}`
+                  )
+                }
+              >
+                <IconContext.Provider value={{ className: styles["icon"] }}>
+                  <AiFillHeart />
+                </IconContext.Provider>
+              </button>
+            ) : iconLoading ? (
+              <div className={styles["loading-icon"]}>
+                <FadeLoader
+                  color="#daf3f7"
+                  height={15}
+                  width={5}
+                  radius={2}
+                  margin={2}
+                />
+              </div>
+            ) : null}
             <SectionOne
               weatherLocation={`${data?.data.name}, ${data?.data.sys.country}`}
               locationDate={data?.data.timezone}
