@@ -5,6 +5,7 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  onSnapshot,
   orderBy,
   query,
   where,
@@ -86,15 +87,14 @@ const SearchHistory = () => {
   useEffect(() => {
     setLoadingSearches(true);
     if (user) {
-      const getSearchedCountries = async () => {
-        const searchedCountriesRef = collection(db, "searched_countries");
-        const q = query(
-          searchedCountriesRef,
-          orderBy("time_searched", "desc"),
-          where("owner", "==", user!.uid)
-        );
+      const searchedCountriesRef = collection(db, "searched_countries");
+      const q = query(
+        searchedCountriesRef,
+        orderBy("time_searched", "desc"),
+        where("owner", "==", user!.uid)
+      );
 
-        const snapshot = await getDocs(q);
+      const unsubscribe = onSnapshot(q, (snapshot) => {
         const searchedCountries = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -102,9 +102,10 @@ const SearchHistory = () => {
 
         setSearchedCountries(searchedCountries);
         setLoadingSearches(false);
-      };
+      });
 
-      getSearchedCountries();
+      // Clean up function
+      return () => unsubscribe();
     }
   }, [user]);
 
