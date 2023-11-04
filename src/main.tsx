@@ -21,26 +21,36 @@ const router = createBrowserRouter([
   },
   {
     path: "search",
-    element: <Search />,
+    element: (
+      <AuthProvider>
+        <Search />
+      </AuthProvider>
+    ),
   },
   {
     path: "search_history",
-    element: <SearchHistory />,
+    element: (
+      <AuthProvider>
+        <SearchHistory />
+      </AuthProvider>
+    ),
   },
   {
     path: "bookmarking",
-    element: <Bookmarking />,
+    element: (
+      <AuthProvider>
+        <Bookmarking />
+      </AuthProvider>
+    ),
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <AuthProvider>
-      <QueryProvider>
-        <Provider store={store}>
-          <RouterProvider router={router} />
-        </Provider>
-      </QueryProvider>
-    </AuthProvider>
+    <QueryProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </QueryProvider>
   </React.StrictMode>
 );
