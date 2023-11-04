@@ -244,7 +244,7 @@ const Search = () => {
             style={{
               background:
                 changeTheme === ""
-                  ? "hsla(182, 13%, 42%, 0.7)"
+                  ? "hsla(254, 14%, 31%, 0.75)"
                   : changeTheme === "day"
                   ? "hsla(202, 58%, 35%, 0.75)"
                   : "hsla(254, 14%, 45%, 0.75)",
@@ -261,7 +261,7 @@ const Search = () => {
             style={{
               background:
                 changeTheme === ""
-                  ? "hsla(182, 13%, 42%, 0.7)"
+                  ? "hsla(254, 14%, 31%, 0.75)"
                   : changeTheme === "day"
                   ? "hsla(202, 58%, 35%, 0.75)"
                   : "hsla(254, 14%, 45%, 0.75)",
@@ -276,7 +276,7 @@ const Search = () => {
             style={{
               background:
                 changeTheme === ""
-                  ? "hsla(182, 13%, 42%, 0.7)"
+                  ? "hsla(254, 14%, 31%, 0.75)"
                   : changeTheme === "day"
                   ? "hsla(202, 58%, 35%, 0.75)"
                   : "hsla(254, 14%, 45%, 0.75)",
