@@ -4,24 +4,26 @@
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
+  gap: 1em;
 
   .section-one-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 0.5em;
 
     p:first-of-type {
       font-family: "PoppinsRegular";
       color: theme.$white-color;
       font-size: 2.1rem;
+      overflow-wrap: anywhere;
     }
 
     p:nth-of-type(2) {
       font-family: "PoppinsRegular";
       color: theme.$white-color;
       font-size: 1rem;
+      overflow-wrap: anywhere;
     }
 
     p:last-of-type {
@@ -76,7 +78,6 @@
       align-items: flex-start;
       text-align: left;
       margin-left: 0.5em;
-      margin-top: 0em;
     }
 
     .section-one-temp {
