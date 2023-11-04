@@ -27,7 +27,7 @@ const CurrentLocation = () => {
         (position) => {
           const { latitude, longitude } = position.coords;
           fetch(
-            `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=${
+            `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=${
               import.meta.env.VITE_WEATHER_API_KEY
             }`
           )
