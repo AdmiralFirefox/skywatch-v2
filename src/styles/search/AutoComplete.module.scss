@@ -1,0 +1,38 @@
+@use "../themeprovider/themeprovider" as theme;
+
+.loader {
+  background: theme.$white-color;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  padding: 1.2em;
+  top: 3.1em;
+  z-index: 2;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: absolute;
+  top: 3.1em;
+  z-index: 2;
+  overflow-y: auto;
+
+  .select-button {
+    background: theme.$white-color;
+    color: theme.$black-color;
+    font-family: "PoppinsSemiBold";
+    font-size: 1rem;
+    padding: 1.2em;
+    border: none;
+    text-align: left;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+
+    &:hover {
+      background: theme.$transparent-white-color;
+    }
+  }
+}
