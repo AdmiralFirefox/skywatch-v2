@@ -236,7 +236,7 @@ const Search = () => {
             <p className={styles["subtitle"]}>
               Suggestion: Try searching your place to get started.
             </p>
-            <CurrentLocation />
+            {/* <CurrentLocation /> */}
           </section>
         ) : isLoading ? (
           <div
