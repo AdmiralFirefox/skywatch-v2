@@ -20,7 +20,7 @@ import { fetchWeatherData } from "../utils/fetchWeatherData";
 import { fetchAQIData } from "../utils/fetchAQI";
 import { fetchForecastData } from "../utils/fetchForecastData";
 import Navbar from "../components/Navbar/Navbar";
-// import CurrentLocation from "../components/Search/CurrentLocation";
+import CurrentLocation from "../components/Search/CurrentLocation";
 import SearchForm from "../components/Search/SearchForm";
 import SectionOne from "../components/Search/SectionOne";
 import SectionTwo from "../components/Search/SectionTwo";
@@ -236,7 +236,7 @@ const Search = () => {
             <p className={styles["subtitle"]}>
               Suggestion: Try searching your place to get started.
             </p>
-            {/* <CurrentLocation /> */}
+            <CurrentLocation />
           </section>
         ) : isLoading ? (
           <div
