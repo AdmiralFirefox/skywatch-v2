@@ -32,7 +32,7 @@
     border-radius: 5px;
     margin-top: 2em;
 
-    h1 {
+    .title {
       color: theme.$white-color;
       font-family: "PoppinsBold";
       font-size: clamp(1.8rem, 5vw, 2.3rem);
@@ -41,7 +41,7 @@
       width: min(15em, 100%);
     }
 
-    p {
+    .subtitle {
       color: theme.$white-color;
       font-family: "PoppinsRegular";
       text-align: center;

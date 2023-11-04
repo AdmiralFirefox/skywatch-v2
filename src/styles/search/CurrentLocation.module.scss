@@ -1,0 +1,37 @@
+@use "../themeprovider/themeprovider" as theme;
+
+.location-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+
+  p {
+    color: theme.$white-color;
+    font-family: "PoppinsMedium";
+    font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+    text-align: center;
+  }
+
+  button {
+    font-family: "PoppinsBold";
+    background: theme.$orange-color;
+    color: theme.$white-color;
+    border: none;
+    border-radius: 5px;
+    padding: 0.6em 1.6em;
+    font-size: 1.1rem;
+    margin-top: 0.6em;
+    cursor: pointer;
+    overflow-wrap: anywhere;
+    transition: background 0.2s ease-in-out;
+
+    &:hover {
+      background: theme.$light-orange-color;
+    }
+  }
+
+  .loader-wrapper {
+    margin-top: 1.5em;
+  }
+}

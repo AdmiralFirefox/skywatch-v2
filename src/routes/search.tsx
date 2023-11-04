@@ -20,6 +20,7 @@ import { fetchWeatherData } from "../utils/fetchWeatherData";
 import { fetchAQIData } from "../utils/fetchAQI";
 import { fetchForecastData } from "../utils/fetchForecastData";
 import Navbar from "../components/Navbar/Navbar";
+import CurrentLocation from "../components/Search/CurrentLocation";
 import SearchForm from "../components/Search/SearchForm";
 import SectionOne from "../components/Search/SectionOne";
 import SectionTwo from "../components/Search/SectionTwo";
@@ -231,8 +232,11 @@ const Search = () => {
 
         {searchedPlace === "" ? (
           <section className={styles["initial-content-card"]}>
-            <h1>Search for a City or Country</h1>
-            <p>Suggestion: Try searching your place to get started.</p>
+            <h1 className={styles["title"]}>Search for a City or Country</h1>
+            <p className={styles["subtitle"]}>
+              Suggestion: Try searching your place to get started.
+            </p>
+            <CurrentLocation />
           </section>
         ) : isLoading ? (
           <div
