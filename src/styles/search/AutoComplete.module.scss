@@ -35,4 +35,16 @@
       background: theme.$transparent-white-color;
     }
   }
+
+  .select-button-active {
+    background: theme.$transparent-white-color;
+    color: theme.$black-color;
+    font-family: "PoppinsSemiBold";
+    font-size: 1rem;
+    padding: 1.2em;
+    border: none;
+    text-align: left;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
 }
