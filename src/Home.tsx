@@ -21,7 +21,7 @@ function Home() {
           A weather application to know the weather of a specific place, either
           be a city or country.
         </p>
-        <Link to="/search">Start Seaching</Link>
+        <Link to="/search">Start Searching</Link>
       </section>
     </main>
   );

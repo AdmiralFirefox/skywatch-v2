@@ -57,7 +57,7 @@ const SignInModal = ({
               </IconContext.Provider>
             </button>
             <h1>Sign In with Google</h1>
-            <p>Sign in to use the various features of SkyWatch.</p>
+            <p>Sign in to use various features of SkyWatch.</p>
             <button
               onClick={signInWithgoogle}
               className={styles["google-button"]}

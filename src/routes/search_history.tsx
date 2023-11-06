@@ -137,7 +137,7 @@ const SearchHistory = () => {
         <Placeholder
           image={SignInImage}
           title="You are not signed in."
-          subtitle="Please sign in to keep track of your recent searches."
+          subtitle="Sign in to keep track of your recent searches."
         />
       </>
     );

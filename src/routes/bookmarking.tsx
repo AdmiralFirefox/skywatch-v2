@@ -100,7 +100,7 @@ const Bookmarking = () => {
         <Placeholder
           image={SignInImage}
           title="You are not signed in."
-          subtitle="Please sign in to use the bookmarking feature of SkyWatch."
+          subtitle="Sign in to use the bookmarking feature of SkyWatch."
         />
       </>
     );
