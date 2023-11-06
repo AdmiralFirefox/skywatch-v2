@@ -16,7 +16,7 @@ function Home() {
     <main>
       <section className={styles["home-card"]}>
         <img src={WebLogo} alt="Web Logo" />
-        <h1>SkyWatch 2: A Global Weather Monitoring System</h1>
+        <h1>SkyWatch: A Global Weather Monitoring System</h1>
         <p>
           A weather application to know the weather of a specific place, either
           be a city or country.
