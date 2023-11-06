@@ -21,6 +21,7 @@ import Placeholder from "../components/Placeholder/Placeholder";
 import { AiFillHeart } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { BookmarProps } from "../types/BookmarkTypes";
+import { toast } from "react-toastify";
 import styles from "../styles/bookmarking/Bookmarking.module.scss";
 
 const Bookmarking = () => {
@@ -41,9 +42,20 @@ const Bookmarking = () => {
     await deleteDoc(docRef);
   };
 
-  const handleDelete = (docId: string) => {
+  const handleDelete = (docId: string, countryName: string | undefined) => {
     deleteBookmarkedCountry(docId).then(() => {
       setBookmarks(bookmarks.filter((bookmark) => bookmark.id !== docId));
+    });
+
+    toast.error(`${countryName} removed from bookmark`, {
+      position: "top-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
     });
   };
 
@@ -123,7 +135,7 @@ const Bookmarking = () => {
                 </button>
                 <button
                   className={styles["icon-button"]}
-                  onClick={() => handleDelete(bookmark.id)}
+                  onClick={() => handleDelete(bookmark.id, bookmark.place)}
                 >
                   <IconContext.Provider value={{ className: styles["icon"] }}>
                     <AiFillHeart />

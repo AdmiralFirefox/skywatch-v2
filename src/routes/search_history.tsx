@@ -25,6 +25,7 @@ import Placeholder from "../components/Placeholder/Placeholder";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { SearchHistoryProps } from "../types/SearchHistoryTypes";
+import { toast } from "react-toastify";
 import styles from "../styles/search_history/SearchHistory.module.scss";
 
 const SearchHistory = () => {
@@ -80,6 +81,17 @@ const SearchHistory = () => {
     deleteAllSearchedCountries().then(() => {
       setSearchedCountries([]);
       setDeleteSearchesModal(false);
+    });
+
+    toast.error("Cleared search history", {
+      position: "top-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
     });
   };
 

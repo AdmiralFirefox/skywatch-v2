@@ -10,6 +10,7 @@ import { AiFillHome } from "react-icons/ai";
 import { FaSearchLocation } from "react-icons/fa";
 import { FaHistory } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
+import { toast } from "react-toastify";
 import styles from "../../styles/navbar/Navbar.module.scss";
 
 const Navbar = () => {
@@ -45,9 +46,28 @@ const Navbar = () => {
       await signInWithPopup(auth, provider);
 
       setSignInModal(false);
+      toast.success("Signed in Successfully", {
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } catch (err) {
       console.log(err);
-      alert(err);
+      toast.error(err!.toString(), {
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -56,6 +76,16 @@ const Navbar = () => {
     await signOut(auth);
 
     setSignOutModal(false);
+    toast.error("Signed Out", {
+      position: "top-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
 
   return (

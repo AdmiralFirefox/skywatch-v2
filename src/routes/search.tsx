@@ -32,6 +32,7 @@ import FadeLoader from "react-spinners/FadeLoader";
 import { WeatherProps } from "../types/WeatherTypes";
 import { AQIProps } from "../types/AQITypes";
 import { ForecastProps } from "../types/ForecastTypes";
+import { toast } from "react-toastify";
 import SyncLoader from "react-spinners/SyncLoader";
 import styles from "../styles/search/SearchPage.module.scss";
 
@@ -87,6 +88,20 @@ const Search = () => {
 
   // Add to Bookmarks
   const addToBookmarks = async () => {
+    toast.success(
+      `${data?.data.name}, ${data?.data.sys.country} added to bookmarks`,
+      {
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      }
+    );
+
     const bookmarksRef = collection(db, "bookmarks");
     const placeValue = `${data?.data.name}, ${data?.data.sys.country}`;
 
@@ -99,6 +114,20 @@ const Search = () => {
 
   // Remove from Bookmarks (based on the place value)
   const deleteFromBookmarks = async (placeValue: string) => {
+    toast.error(
+      `${data?.data.name}, ${data?.data.sys.country} removed from bookmarks`,
+      {
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      }
+    );
+
     const bookmarksRef = collection(db, "bookmarks");
     const q = query(
       bookmarksRef,

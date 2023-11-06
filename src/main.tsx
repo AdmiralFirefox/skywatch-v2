@@ -9,10 +9,12 @@ import Search from "./routes/search.tsx";
 import SearchHistory from "./routes/search_history.tsx";
 import Bookmarking from "./routes/bookmarking.tsx";
 import { AuthProvider } from "./provider/AuthProvider.tsx";
+import { ToastContainer } from "react-toastify";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./styles/globals.scss";
 import "./styles/fonts.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +51,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryProvider>
       <Provider store={store}>
+        <ToastContainer limit={2} />
         <RouterProvider router={router} />
       </Provider>
     </QueryProvider>
