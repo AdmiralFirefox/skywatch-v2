@@ -22,14 +22,22 @@
 
   .select-button {
     background: theme.$white-color;
-    color: theme.$black-color;
     font-family: "PoppinsSemiBold";
-    font-size: 1rem;
-    padding: 1.2em;
+    padding: 1.1em;
     border: none;
     text-align: left;
     overflow-wrap: anywhere;
     cursor: pointer;
+
+    .country-name {
+      font-size: 1.1rem;
+      color: theme.$black-color;
+    }
+
+    .country-region {
+      font-size: 0.9rem;
+      color: theme.$dark-grey-color;
+    }
 
     &:hover {
       background: theme.$transparent-white-color;
@@ -38,13 +46,21 @@
 
   .select-button-active {
     background: theme.$transparent-white-color;
-    color: theme.$black-color;
     font-family: "PoppinsSemiBold";
-    font-size: 1rem;
-    padding: 1.2em;
+    padding: 1.1em;
     border: none;
     text-align: left;
     overflow-wrap: anywhere;
     cursor: pointer;
+
+    .country-name {
+      font-size: 1.1rem;
+      color: theme.$black-color;
+    }
+
+    .country-region {
+      font-size: 0.9rem;
+      color: theme.$dark-grey-color;
+    }
   }
 }

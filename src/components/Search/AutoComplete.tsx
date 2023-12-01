@@ -101,7 +101,11 @@ const AutoComplete = ({ searchPlace, selectCountry }: AutoCompleteProps) => {
                     selectCountry(`${country.name}, ${country.country}`)
                   }
                 >
-                  {country.name}, {country.region}, {country.country}
+                  <span className={styles["country-name"]}>{country.name}</span>
+                  <br />
+                  <span className={styles["country-region"]}>
+                    {country.region}, {country.country}
+                  </span>
                 </button>
               ))}
             </div>
