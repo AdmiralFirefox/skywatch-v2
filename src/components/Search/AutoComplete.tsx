@@ -45,24 +45,26 @@ const AutoComplete = ({ searchPlace, selectCountry }: AutoCompleteProps) => {
       key: string;
       preventDefault: () => void;
     }) => {
-      if (event.key === "ArrowDown") {
-        setFocusedButtonIndex((prevIndex) => {
-          const nextIndex = (prevIndex + 1) % data!.data.length;
-          focusedCountry.current = data?.data[nextIndex];
-          return nextIndex;
-        });
-      } else if (event.key === "ArrowUp") {
-        setFocusedButtonIndex((prevIndex) => {
-          const nextIndex =
-            (prevIndex - 1 + data!.data.length) % data!.data.length;
-          focusedCountry.current = data?.data[nextIndex];
-          return nextIndex;
-        });
-      } else if (event.key === "Enter" && focusedCountry.current) {
-        event.preventDefault();
-        selectCountry(
-          `${focusedCountry.current.name}, ${focusedCountry.current.country}`
-        );
+      if (data?.data !== undefined) {
+        if (event.key === "ArrowDown") {
+          setFocusedButtonIndex((prevIndex) => {
+            const nextIndex = (prevIndex + 1) % data!.data.length;
+            focusedCountry.current = data?.data[nextIndex];
+            return nextIndex;
+          });
+        } else if (event.key === "ArrowUp") {
+          setFocusedButtonIndex((prevIndex) => {
+            const nextIndex =
+              (prevIndex - 1 + data!.data.length) % data!.data.length;
+            focusedCountry.current = data?.data[nextIndex];
+            return nextIndex;
+          });
+        } else if (event.key === "Enter" && focusedCountry.current) {
+          event.preventDefault();
+          selectCountry(
+            `${focusedCountry.current.name}, ${focusedCountry.current.country}`
+          );
+        }
       }
     };
 
